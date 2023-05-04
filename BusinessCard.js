@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-
+import BusinessCardNode from './BusinessCardNode';
 import {StyleSheet, Linking} from 'react-native';
 // TODO instead use get instead of local import. use only for testing
 import people from './people';
@@ -40,9 +40,10 @@ class BusinessCard extends Component {
 
     const peopleObjTargetsLocal = {}
 
+    // mapeo del objeto de la db a un target para viro
     people.forEach(person => {
       peopleObjTargetsLocal[person.id] = {
-        source: require('./pokemon/004.png'),
+        source: {uri : person['target']},
         orientation: 'Up',
         physicalWidth: 0.05, // width in meters,
         data : person,
@@ -76,71 +77,8 @@ class BusinessCard extends Component {
                     runAnimation: true
                 })}
             >
-              <ViroNode key={person['data']['name']}>
-                <ViroNode
-                  opacity={0} position={[0, -0.02, 0]}
-                  animation={{
-                    name:'animateImage',
-                    run: this.state.runAnimation
-                    }}
-                >
-                  <ViroFlexView
-                      rotation={[-90, 0, 0]}
-                      height={0.03}
-                      width={0.05}
-                      style={styles.card}
-                  >
-                    <ViroFlexView
-                      style={styles.cardWrapper}
-                    >
-                      <ViroImage
-                        height={0.015}
-                        width={0.015}
-                        style={styles.image}
-                        source={{uri : person['data']['image']}}
-                      />
-                      <ViroText
-                        textClipMode="None"
-                        text={person['data']['name']}
-                        scale={[.015, .015, .015]}
-                        style={styles.textStyle}
-                      />
-                    </ViroFlexView>
-                    <ViroFlexView
-                      onTouch={() => Linking.openURL(person['data']['link'])}
-                      style={styles.cardWrapper}
-                    >
-                      <ViroText
-                        width={0.01}
-                        height={0.01}
-                        textAlign="left"
-                        textClipMode="None"
-                        text={person['data']['company_name']}
-                        scale={[.01, .01, .01]}
-                        style={styles.textStyle}
-                      />
-                      <ViroImage
-                        height={0.01}
-                        width={0.01}
-                        style={styles.image}
-                        source={{uri : person['data']['company_logo']}}
-                      />
-                    </ViroFlexView>
-                  </ViroFlexView>
-                </ViroNode>
-                <ViroFlexView >
-                  <ViroText text={person['data']['mail']}
-                    rotation={[-90, 0, 0]}
-                    scale={[.01, .01, .01]}
-                    style={styles.textStyle}
-                  />
-                  <ViroText text={person['data']['role']}
-                    rotation={[-90, 0, 0]}
-                    scale={[.01, .01, .01]}
-                    style={styles.textStyle}
-                  />
-                </ViroFlexView>
-              </ViroNode>
+              <BusinessCardNode person={person}/>
+
             </ViroARImageMarker>)
         })}
     </ViroNode>
