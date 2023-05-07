@@ -1,10 +1,12 @@
-'use strict';
-
 import React, { Component } from 'react';
-
-import {StyleSheet, Linking} from 'react-native';
+import firestore from '@react-native-firebase/firestore';
+// import firebaseConfig from './firebaseconfig';
+// import {collection, addDoc, getDocs, where, query} from 'firebase/firestore'; // import collection and addDoc functions from Firestore
+import { StyleSheet, Linking } from 'react-native';
 // TODO instead use get instead of local import. use only for testing
 import people from './people';
+import DemoCard from './DemoCard';
+
 
 import {
   ViroARScene,
@@ -24,151 +26,119 @@ import {
   ViroAnimations,
   ViroNode,
   Viro3DObject,
-  ViroQuad
+  ViroQuad,
 } from '@viro-community/react-viro';
 
 class BusinessCard extends Component {
-
   state = {
     isTracking: false,
     initialized: false,
     runAnimation: false,
-    peopleObjTargets: {}
-  }
-
+    peopleObjTargets: {},
+    entryTargets: {},
+    realTargets: {},
+    ready: false,
+    activeKey: null,
+  };
   componentDidMount() {
-
-    const peopleObjTargetsLocal = {}
-
-    people.forEach(person => {
-      peopleObjTargetsLocal[person.id] = {
-        source: require('./pokemon/004.png'),
-        orientation: 'Up',
-        physicalWidth: 0.05, // width in meters,
-        data : person,
-        type : 'Image',
-      }
-    })
-
-    this.setState({peopleObjTargets : peopleObjTargetsLocal})
-    ViroARTrackingTargets.createTargets(peopleObjTargetsLocal);
-
+    this.get();
+    console.log('Get');
   }
 
-  getNoTrackingUI(){
+  get = async () => {
+    entriesLocal = {};
+    try {
+      const querySnapshot = await firestore().collection('entries').get();
+      const entryTargets = {};
+      querySnapshot.forEach(documentSnapshot => {
+        entryTargets[documentSnapshot.id] = documentSnapshot.data();
+      });
+      const parseInteger = (num) => {
+        let str = num.toString();
+        str = str.padStart(3, "0");
+        return str;
+      };
+      this.setState({ entryTargets }, () => {
+        for (const [key, value] of Object.entries(this.state.entryTargets)) {
+          entriesLocal[key] = {
+            source: {
+              uri: `https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/${parseInteger(value.pokemon)}.png`,
+            },
+            orientation: 'Up',
+            physicalWidth: 0.1, // width in meters,
+            data: { text: value.text, pokemon: value.pokemon },
+            type: 'Image',
+          };
+        }
+
+        this.setState({
+          realTargets: entriesLocal,
+        });
+
+        console.log('Entries Local', entriesLocal);
+        ViroARTrackingTargets.createTargets(entriesLocal);
+        this.setState({
+          ready: true,
+        });
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  getNoTrackingUI() {
     const { isTracking, initialized } = this.state;
     return (
-      <ViroText text={
-        initialized ? 'Initializing AR...'
-          : "No Tracking"
-      }/>
-    )
-  }
-
-  getARScene() {
-    return (
-      <ViroNode>
-        {Object.values(this.state.peopleObjTargets).map((person, index) => {
-          return (
-            <ViroARImageMarker target={person['data']['id']} key={index}
-              onAnchorFound={
-                () => this.setState({
-                    runAnimation: true
-                })}
-            >
-              <ViroNode key={person['data']['name']}>
-                <ViroNode
-                  opacity={0} position={[0, -0.02, 0]}
-                  animation={{
-                    name:'animateImage',
-                    run: this.state.runAnimation
-                    }}
-                >
-                  <ViroFlexView
-                      rotation={[-90, 0, 0]}
-                      height={0.03}
-                      width={0.05}
-                      style={styles.card}
-                  >
-                    <ViroFlexView
-                      style={styles.cardWrapper}
-                    >
-                      <ViroImage
-                        height={0.015}
-                        width={0.015}
-                        style={styles.image}
-                        source={{uri : person['data']['image']}}
-                      />
-                      <ViroText
-                        textClipMode="None"
-                        text={person['data']['name']}
-                        scale={[.015, .015, .015]}
-                        style={styles.textStyle}
-                      />
-                    </ViroFlexView>
-                    <ViroFlexView
-                      onTouch={() => Linking.openURL(person['data']['link'])}
-                      style={styles.cardWrapper}
-                    >
-                      <ViroText
-                        width={0.01}
-                        height={0.01}
-                        textAlign="left"
-                        textClipMode="None"
-                        text={person['data']['company_name']}
-                        scale={[.01, .01, .01]}
-                        style={styles.textStyle}
-                      />
-                      <ViroImage
-                        height={0.01}
-                        width={0.01}
-                        style={styles.image}
-                        source={{uri : person['data']['company_logo']}}
-                      />
-                    </ViroFlexView>
-                  </ViroFlexView>
-                </ViroNode>
-                <ViroFlexView >
-                  <ViroText text={person['data']['mail']}
-                    rotation={[-90, 0, 0]}
-                    scale={[.01, .01, .01]}
-                    style={styles.textStyle}
-                  />
-                  <ViroText text={person['data']['role']}
-                    rotation={[-90, 0, 0]}
-                    scale={[.01, .01, .01]}
-                    style={styles.textStyle}
-                  />
-                </ViroFlexView>
-              </ViroNode>
-            </ViroARImageMarker>)
-        })}
-    </ViroNode>
-    )
+      <ViroText text={initialized ? 'Initializing AR...' : 'No Tracking'} />
+    );
   }
 
   render() {
     return (
-      <ViroARScene onTrackingUpdated={this._onInitialized} >
-        { this.state.isTracking ? this.getNoTrackingUI() : this.getARScene() }
+      <ViroARScene onTrackingUpdated={this._onInitialized}>
+        {Object.keys(this.state.realTargets).map((key, index) => {
+          return (
+            <ViroARImageMarker
+              target={key}
+              key={index}
+              onAnchorUpdated={(e) => {
+                // change active key when a new target is found
+                if(this.state.activeKey !== key && e.trackingMethod === 'tracking'){
+                  console.log('Anchor found ' + this.state.realTargets[key].data.pokemon)
+                  // show info from key 
+                  this.setState({
+                    activeKey: key
+                  });
+                }
+              }}
+            >
+              {this.state.activeKey === key &&
+                <ViroNode>
+                  <DemoCard demoText={this.state.realTargets[key].data.text} />
+                </ViroNode>
+              }
+            </ViroARImageMarker>
+          );
+        })}
       </ViroARScene>
     );
   }
 
   _onInitialized = (state, reason) => {
     if (state == ViroTrackingStateConstants.TRACKING_NORMAL) {
-      isTracking: true
-    } else  {
-      isTracking: false
+      //
+    } else {
+      //
     }
-  }
+  };
+
 }
 
 var styles = StyleSheet.create({
   textStyle: {
-    flex: .5,
+    flex: 0.5,
     fontFamily: 'Roboto',
-    fontSize: 30,
+    fontSize: 50,
     color: '#ffffff',
     textAlignVertical: 'top',
     textAlign: 'left',
@@ -182,42 +152,42 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-start',
     padding: 0.001,
-    flex: .5
+    flex: 0.5,
   },
   subText: {
     flexDirection: 'column',
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
-    flex: .5
-  }
+    flex: 0.5,
+  },
 });
 
 ViroMaterials.createMaterials({
   imagePlaceholder: {
-    diffuseColor: "rgba(255,255,255,1)"
+    diffuseColor: 'rgba(255,255,255,1)',
   },
   quad: {
-    diffuseColor: "rgba(0,0,0,0.5)"
-  }
+    diffuseColor: 'rgba(0,0,0,0.5)',
+  },
 });
 
 ViroAnimations.registerAnimations({
-  animateImage:{
-    properties:{
+  animateImage: {
+    properties: {
       positionX: 0.05,
-      opacity: 1.0
+      opacity: 1.0,
     },
-      easing:"Bounce",
-      duration: 500
+    easing: 'Bounce',
+    duration: 500,
   },
   animateViro: {
     properties: {
       positionZ: 0.02,
       opacity: 1.0,
     },
-    easing:"Bounce",
-    duration: 500
-  }
+    easing: 'Bounce',
+    duration: 500,
+  },
 });
 
 export default BusinessCard;
