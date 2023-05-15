@@ -67,11 +67,11 @@ import { useNavigation } from '@react-navigation/native'
         paddingBottom: 12,
         marginLeft: 28,
         marginRight: 28,
-        backgroundColor: "#FBBF24",
+        backgroundColor: themeColors.accent,
         borderRadius: 12,        
     },
     buttonText: {
-        color: "#374151",
+        color: themeColors.darkGray,
         fontSize: 20,
         lineHeight: 28,
         fontWeight: "700",
@@ -96,6 +96,6 @@ import { useNavigation } from '@react-navigation/native'
         fontWeight : "700"
     },
     textYellow400 : {
-        color: "#FBBF24",
+        color: themeColors.accent,
     }
   });

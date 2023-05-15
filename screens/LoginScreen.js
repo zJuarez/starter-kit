@@ -32,7 +32,7 @@ export default function LoginScreen() {
               padding: 16,
               marginBottom: 12,
               backgroundColor: "#F3F4F6",
-              color: "#374151",
+              color: themeColors.darkGray,
               borderRadius: 16,
             }}
             placeholder="email"
@@ -43,7 +43,7 @@ export default function LoginScreen() {
             style={{
               padding: 16,
               backgroundColor: "#F3F4F6",
-              color: "#374151",
+              color: themeColors.darkGray,
               borderRadius: 16,
               marginTop: 8
             }}
@@ -58,7 +58,7 @@ export default function LoginScreen() {
           }}>
             <Text style={{
               marginBottom: 20,
-              color: "#374151",
+              color: themeColors.darkGray,
             }}>Forgot Password?</Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -66,13 +66,13 @@ export default function LoginScreen() {
             style={{
               paddingTop: 12,
               paddingBottom: 12,
-              backgroundColor: "#FBBF24",
+              backgroundColor: themeColors.accent,
               borderRadius: 12,
               marginTop: 8
             }}>
             <Text
               style={{
-                color: "#374151",
+                color: themeColors.darkGray,
                 fontSize: 20,
                 lineHeight: 28,
                 fontWeight: "700",
@@ -87,7 +87,7 @@ export default function LoginScreen() {
         {socials &&  <> <Text style={{
           paddingTop: 20,
           paddingBottom: 20,
-          color: "#374151",
+          color: themeColors.darkGray,
           fontSize: 20,
           lineHeight: 28,
           fontWeight: "700",
@@ -145,7 +145,7 @@ export default function LoginScreen() {
           </Text>
           <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
             <Text style={{
-              color: "#F59E0B",
+              color: themeColors.accentSub,
               fontWeight: "600",
             }}> Sign Up</Text>
           </TouchableOpacity>
@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
   back: {
     padding: 8,
     marginLeft: 16,
-    backgroundColor: "#FBBF24",
+    backgroundColor: themeColors.accent,
     borderTopRightRadius: 16,
     borderBottomLeftRadius: 16,
   },
@@ -193,6 +193,6 @@ const styles = StyleSheet.create({
   },
   text: {
     marginLeft: 16,
-    color: "#374151",
+    color: themeColors.darkGray,
   }
 });
