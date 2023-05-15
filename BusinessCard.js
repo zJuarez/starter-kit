@@ -7,7 +7,6 @@ import { StyleSheet, Linking } from 'react-native';
 import people from './people';
 import DemoCard from './DemoCard';
 
-
 import {
   ViroARScene,
   ViroDirectionalLight,

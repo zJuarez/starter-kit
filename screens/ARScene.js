@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 import {ViroARSceneNavigator} from '@viro-community/react-viro';
 
-import BusinessCard from './BusinessCard';
+import BusinessCard from '../BusinessCard'
 
 export default () => {
   return (
