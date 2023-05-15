@@ -20,7 +20,7 @@ export default function SignUpScreen() {
                         style={{
                             padding: 8,
                             marginLeft: 16,
-                            backgroundColor: "#FBBF24",
+                            backgroundColor: themeColors.accent,
                             borderTopRightRadius: 16,
                             borderBottomLeftRadius: 16,
                         }}
@@ -50,14 +50,14 @@ export default function SignUpScreen() {
                 <View>
                     <Text style={{
                         marginLeft: 16,
-                        color: "#374151",
+                        color: themeColors.darkGray,
                     }}>Full Name</Text>
                     <TextInput
                         style={{
                             padding: 16,
                             marginBottom: 12,
                             backgroundColor: "#F3F4F6",
-                            color: "#374151",
+                            color: themeColors.darkGray,
                             borderRadius: 16,
                         }}
                         value="john snow"
@@ -65,7 +65,7 @@ export default function SignUpScreen() {
                     />
                     <Text style={{
                         marginLeft: 16,
-                        color: "#374151",
+                        color: themeColors.darkGray,
                         marginTop: 8
                     }}>Email Address</Text>
                     <TextInput
@@ -73,7 +73,7 @@ export default function SignUpScreen() {
                             padding: 16,
                             marginBottom: 12,
                             backgroundColor: "#F3F4F6",
-                            color: "#374151",
+                            color: themeColors.darkGray,
                             borderRadius: 16,
                         }}
                         value="john@gmail.com"
@@ -81,7 +81,7 @@ export default function SignUpScreen() {
                     />
                     <Text style={{
                         marginLeft: 16,
-                        color: "#374151",
+                        color: themeColors.darkGray,
                         marginTop: 8
                     }}>Password</Text>
                     <TextInput
@@ -89,7 +89,7 @@ export default function SignUpScreen() {
                             padding: 16,
                             marginBottom: 12,
                             backgroundColor: "#F3F4F6",
-                            color: "#374151",
+                            color: themeColors.darkGray,
                             borderRadius: 16,
                         }}
                         secureTextEntry
@@ -100,12 +100,12 @@ export default function SignUpScreen() {
                         style={{
                             paddingTop: 12,
                             paddingBottom: 12,
-                            backgroundColor: "#FBBF24",
+                            backgroundColor: themeColors.accent,
                             borderRadius: 12,
                         }}
                     >
                         <Text style={{
-                            color: "#374151",
+                            color: themeColors.darkGray,
                             fontWeight: "700",
                             textAlign: "center",
                         }}>
@@ -124,7 +124,7 @@ export default function SignUpScreen() {
                     }}>Already have an account?</Text>
                     <TouchableOpacity onPress={() => navigation.navigate('Login')}>
                         <Text style={{
-                            color: "#F59E0B",
+                            color: themeColors.accentSub,
                             fontWeight: "600",
                         }}> Login</Text>
                     </TouchableOpacity>
