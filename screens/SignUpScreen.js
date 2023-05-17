@@ -32,7 +32,7 @@ export default function SignUpScreen() {
                     flexDirection: "row",
                     justifyContent: "center",
                 }}>
-                    <Image source={require('../assets/images/signup.png')}
+                    <Image source={require('../assets/images/crema.png')}
                         style={{ width: 165, height: 110 }} />
                 </View>
             </SafeAreaView>

@@ -18,7 +18,7 @@ export default function LoginScreen() {
           </TouchableOpacity>
         </View>
         <View style={styles.rowCenter}>
-          <Image source={require('../assets/images/login.png')}
+          <Image source={require('../assets/images/crema.png')}
             style={{ width: 200, height: 200 }} />
         </View>
 

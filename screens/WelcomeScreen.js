@@ -13,7 +13,7 @@ import { useNavigation } from '@react-navigation/native'
           <Text style={styles.text}>Let's Get Started!</Text>
           <View style={styles.imgContainer}>
             <Image
-              source={require('../assets/images/welcome.png')}
+              source={require('../assets/images/claro.png')}
               style={styles.image}
             />
           </View>
