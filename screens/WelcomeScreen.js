@@ -10,10 +10,10 @@ import { useNavigation } from '@react-navigation/native'
     return (
       <SafeAreaView style={[styles.container, { backgroundColor: themeColors.bg }]}>
         <View style={[styles.containerX]}>
-          <Text style={styles.text}>Let's Get Started!</Text>
+          <Text style={styles.text}>Tech People</Text>
           <View style={styles.imgContainer}>
             <Image
-              source={require('../assets/images/claro.png')}
+              source={require('../assets/images/claroS.png')}
               style={styles.image}
             />
           </View>
@@ -49,7 +49,7 @@ import { useNavigation } from '@react-navigation/native'
       justifyContent : "space-around"
     },
     text: {
-      color: 'white',
+      color: themeColors.crema,
       fontWeight: 'bold',
       fontSize: 40,
       textAlign: 'center',
@@ -59,8 +59,8 @@ import { useNavigation } from '@react-navigation/native'
         justifyContent : "center"
     },
     image: {
-      width: 350,
-      height: 350,
+      width: 300,
+      height: 300,
     },
     button: {
         paddingTop: 12,

@@ -8,6 +8,9 @@ import { useNavigation } from '@react-navigation/native'
 export default function LoginScreen() {
   const navigation = useNavigation();
   const socials = false
+  const onPrimaryButtonPress = () => {
+    navigation.navigate('Home')
+  }
   return (
     <View style={[styles.container, { backgroundColor: themeColors.bg }]}>
       <SafeAreaView style={styles.flex} >
@@ -62,7 +65,7 @@ export default function LoginScreen() {
             }}>Forgot Password?</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => navigation.navigate('ARScene')}
+            onPress={onPrimaryButtonPress}
             style={{
               paddingTop: 12,
               paddingBottom: 12,

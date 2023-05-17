@@ -8,6 +8,9 @@ import { useNavigation } from '@react-navigation/native';
 // subscribe for more videos like this :)
 export default function SignUpScreen() {
     const navigation = useNavigation();
+    const onPrimaryButtonPress = () => {
+        navigation.navigate('Home')
+    }
     return (
         <View style={{ flex: 1, backgroundColor: themeColors.bg }}>
             <SafeAreaView style={{ display: "flex", }}>
@@ -103,6 +106,7 @@ export default function SignUpScreen() {
                             backgroundColor: themeColors.accent,
                             borderRadius: 12,
                         }}
+                        onPress={onPrimaryButtonPress}
                     >
                         <Text style={{
                             color: themeColors.darkGray,
