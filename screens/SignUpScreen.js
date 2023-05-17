@@ -44,11 +44,10 @@ export default function SignUpScreen() {
                 paddingRight: 32,
                 paddingTop: 32,
                 backgroundColor: "#ffffff",
-                flex: 1, 
+                flex: 1,
                 borderTopLeftRadius: 50, borderTopRightRadius: 50,
-                marginTop : 16
+                marginTop: 8
             }}
-
             >
                 <View>
                     <Text style={{
@@ -63,7 +62,7 @@ export default function SignUpScreen() {
                             color: themeColors.darkGray,
                             borderRadius: 16,
                         }}
-                        value="john snow"
+                        value=""
                         placeholder='Enter Name'
                     />
                     <Text style={{
@@ -79,7 +78,7 @@ export default function SignUpScreen() {
                             color: themeColors.darkGray,
                             borderRadius: 16,
                         }}
-                        value="john@gmail.com"
+                        value=""
                         placeholder='Enter Email'
                     />
                     <Text style={{
@@ -96,7 +95,7 @@ export default function SignUpScreen() {
                             borderRadius: 16,
                         }}
                         secureTextEntry
-                        value="test12345"
+                        value=""
                         placeholder='Enter Password'
                     />
                     <TouchableOpacity
@@ -105,6 +104,7 @@ export default function SignUpScreen() {
                             paddingBottom: 12,
                             backgroundColor: themeColors.accent,
                             borderRadius: 12,
+                            marginTop : 16
                         }}
                         onPress={onPrimaryButtonPress}
                     >
@@ -114,6 +114,31 @@ export default function SignUpScreen() {
                             textAlign: "center",
                         }}>
                             Sign Up
+                        </Text>
+                    </TouchableOpacity>
+                    <Text style={{
+                        paddingVertical: 8,
+                        color: themeColors.darkGray,
+                        fontSize: 14,
+                        lineHeight: 14,
+                        fontWeight: "500",
+                        textAlign: "center",
+                    }}>or</Text>
+                     <TouchableOpacity
+                        style={{
+                            paddingTop: 12,
+                            paddingBottom: 12,
+                            backgroundColor: themeColors.accentSub,
+                            borderRadius: 12,
+                        }}
+                        onPress={onPrimaryButtonPress}
+                    >
+                        <Text style={{
+                            color: themeColors.crema,
+                            fontWeight: "700",
+                            textAlign: "center",
+                        }}>
+                            Sign Up with Google
                         </Text>
                     </TouchableOpacity>
                 </View>
