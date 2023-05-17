@@ -59,8 +59,8 @@ import { useNavigation } from '@react-navigation/native'
         justifyContent : "center"
     },
     image: {
-      width: 300,
-      height: 300,
+      width: 275,
+      height: 275,
     },
     button: {
         paddingTop: 12,
