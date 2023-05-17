@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { themeColors } from '../theme'
@@ -88,43 +88,4 @@ const styles = StyleSheet.create({
       flexDirection : "row",
       justifyContent : "center"
   },
-  image: {
-    width: 350,
-    height: 350,
-  },
-  button: {
-      paddingTop: 12,
-      paddingBottom: 12,
-      marginHorizontal : 96,
-      backgroundColor: themeColors.crema,
-      borderRadius: 12,        
-  },
-  buttonText: {
-      color: themeColors.darkGray,
-      fontSize: 20,
-      lineHeight: 28,
-      fontWeight: "700",
-      textAlign: "center",        
-  },
-  linkText: {
-    color: 'white',
-    fontWeight: 'bold',
-  },
-  link: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginTop : 16,
-  },
-  spaceY4: {
-      marginTop : 16
-  },
-  textWhite: {
-      color : "white"
-  },
-  fontSemibold : {
-      fontWeight : "700"
-  },
-  textYellow400 : {
-      color: themeColors.accent,
-  }
 });
