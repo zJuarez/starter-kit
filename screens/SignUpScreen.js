@@ -1,15 +1,30 @@
-import { View, Text, TouchableOpacity, Image, TextInput } from 'react-native'
-import React from 'react'
+import { View, Text, TouchableOpacity, Image, TextInput, Alert } from 'react-native'
+import React, {useState} from 'react'
 import { themeColors } from '../theme'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { ArrowLeftIcon } from 'react-native-heroicons/solid';
 import { useNavigation } from '@react-navigation/native';
+import { createUserWithEmailAndPassword, updateCurrentUser} from 'firebase/auth';
+import {auth} from '../firebaseconfig'
 
-// subscribe for more videos like this :)
 export default function SignUpScreen() {
     const navigation = useNavigation();
-    const onPrimaryButtonPress = () => {
-        navigation.navigate('Home')
+    const [name, setName] = useState("")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const onPrimaryButtonPress = async () => {
+       if(email && password && name){
+        try{
+            await createUserWithEmailAndPassword(auth, email, password)
+        }catch(err){
+            console.log("Sign Up Failed! ", err.message)
+            Alert.alert("Sign Up Failed! ", err.message)
+        }
+       }else{
+        const msg = "All fields required"
+        console.log(msg)
+        Alert.alert(msg)
+       }
     }
     return (
         <View style={{ flex: 1, backgroundColor: themeColors.bg }}>
@@ -33,10 +48,10 @@ export default function SignUpScreen() {
                 </View>
                 <View style={{
                     flexDirection: "row",
-                    justifyContent: "center",
+                    justifyContent: "center", paddingVertical: 12,
                 }}>
                     <Image source={require('../assets/images/crema.png')}
-                        style={{ width: 165, height: 110 }} />
+                        style={{ width: 165, height: 130 }} />
                 </View>
             </SafeAreaView>
             <View style={{
@@ -62,7 +77,8 @@ export default function SignUpScreen() {
                             color: themeColors.darkGray,
                             borderRadius: 16,
                         }}
-                        value=""
+                        value={name}
+                        onChangeText={value => setName(value)}
                         placeholder='Enter Name'
                     />
                     <Text style={{
@@ -78,7 +94,8 @@ export default function SignUpScreen() {
                             color: themeColors.darkGray,
                             borderRadius: 16,
                         }}
-                        value=""
+                        value={email}
+                        onChangeText={value => setEmail(value)}
                         placeholder='Enter Email'
                     />
                     <Text style={{
@@ -95,7 +112,8 @@ export default function SignUpScreen() {
                             borderRadius: 16,
                         }}
                         secureTextEntry
-                        value=""
+                        value={password}
+                        onChangeText={value => setPassword(value)}
                         placeholder='Enter Password'
                     />
                     <TouchableOpacity
@@ -104,7 +122,7 @@ export default function SignUpScreen() {
                             paddingBottom: 12,
                             backgroundColor: themeColors.accent,
                             borderRadius: 12,
-                            marginTop : 16
+                            marginTop : 24
                         }}
                         onPress={onPrimaryButtonPress}
                     >
@@ -114,31 +132,6 @@ export default function SignUpScreen() {
                             textAlign: "center",
                         }}>
                             Sign Up
-                        </Text>
-                    </TouchableOpacity>
-                    <Text style={{
-                        paddingVertical: 8,
-                        color: themeColors.darkGray,
-                        fontSize: 14,
-                        lineHeight: 14,
-                        fontWeight: "500",
-                        textAlign: "center",
-                    }}>or</Text>
-                     <TouchableOpacity
-                        style={{
-                            paddingTop: 12,
-                            paddingBottom: 12,
-                            backgroundColor: themeColors.accentSub,
-                            borderRadius: 12,
-                        }}
-                        onPress={onPrimaryButtonPress}
-                    >
-                        <Text style={{
-                            color: themeColors.crema,
-                            fontWeight: "700",
-                            textAlign: "center",
-                        }}>
-                            Sign Up with Google
                         </Text>
                     </TouchableOpacity>
                 </View>

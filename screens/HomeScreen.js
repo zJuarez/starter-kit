@@ -4,15 +4,23 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { themeColors } from '../theme'
 import { useNavigation } from '@react-navigation/native'
 import { ArrowRightOnRectangleIcon, CameraIcon } from 'react-native-heroicons/solid'
+import { signOut } from 'firebase/auth'
+import {auth} from '../firebaseconfig'
 
-export default function HomeScreen(props) {
+export default function HomeScreen({route}) {
   const navigation = useNavigation()
-  const name = props.name ?? "Mauricio"
+  // TODO get name from user
+  const {user} = route.params
+  const name = user.displayName ?? "Boss"
+  const handleLogout = async() => {
+    // TODO do logout from google as well
+    await signOut(auth)
+  }
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: themeColors.bg }]}>
       <SafeAreaView style={styles.flex} >
         <View style={styles.rowEnd}>
-          <TouchableOpacity onPress={() => navigation.goBack()}
+          <TouchableOpacity onPress={handleLogout}
             style={styles.logout}>
             <ArrowRightOnRectangleIcon size="24" color={themeColors.crema} />
           </TouchableOpacity>

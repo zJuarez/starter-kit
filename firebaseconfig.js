@@ -1,7 +1,9 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import { getAuth } from 'firebase/auth'
 
 const firebaseConfig = {
+  apiKey : "AIzaSyCqE_zr238UP6ODB0dlR77r48y9O_-o0yY",
   type: "service_account",
   projectId: "techpeoplear",
   private_key_id: "89fb48a83e88cbe325d61c2be6a48f7aacfada86",
@@ -20,4 +22,6 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 firebaseConfig.db = db;
 
+export const auth = getAuth(app)
 export default firebaseConfig;
+
