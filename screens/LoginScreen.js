@@ -1,16 +1,31 @@
-import { View, Text, TouchableOpacity, Image, TextInput, StyleSheet } from 'react-native'
-import React from 'react'
+import { View, Text, TouchableOpacity, Image, TextInput, StyleSheet, Alert } from 'react-native'
+import React, {useState} from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { ArrowLeftIcon } from 'react-native-heroicons/solid'
 import { themeColors } from '../theme'
 import { useNavigation } from '@react-navigation/native'
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import {auth} from '../firebaseconfig'
 
 export default function LoginScreen() {
   const navigation = useNavigation();
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
   const socials = false
-  const onPrimaryButtonPress = () => {
-    navigation.navigate('Home')
-  }
+  const onPrimaryButtonPress = async () => {
+    if(email && password){
+     try{
+         await signInWithEmailAndPassword(auth, email, password)
+     }catch(err){
+         console.log("Log In Failed! ", err.message)
+         Alert.alert("Log In Failed! ", err.message)
+     }
+    }else{
+     const msg = "All fields required"
+     console.log(msg)
+     Alert.alert(msg)
+    }
+ }
   return (
     <View style={[styles.container, { backgroundColor: themeColors.bg }]}>
       <SafeAreaView style={styles.flex} >
@@ -39,7 +54,8 @@ export default function LoginScreen() {
               borderRadius: 16,
             }}
             placeholder="email"
-            value="john@gmail.com"
+            value={email}
+            onChangeText={value => setEmail(value)}
           />
           <Text style={[styles.text, styles.mt8]} >Password</Text>
           <TextInput
@@ -52,7 +68,8 @@ export default function LoginScreen() {
             }}
             secureTextEntry
             placeholder="password"
-            value="test12345"
+            value={password}
+            onChangeText={value => setPassword(value)}
           />
           <TouchableOpacity style={{
             display: "flex",
