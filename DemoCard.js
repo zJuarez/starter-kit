@@ -22,7 +22,7 @@ export default function DemoCard(props) {
                 </ViroFlexView>
             </ViroFlexView>
             <ViroFlexView backgroundColor={'white'} style={{ flex: 0.6 }} >
-                <ViroImage borderRadius={30} style={{ flex: 1 }} source={{ uri: 'https://lh3.googleusercontent.com/9BdThza876Ojf5bkVg5yafoEsR0aABZ7cT1jtsWeAxXuWA4wFMXAJOHoST-3DVTKNqLp0Ir_ia3g9zS0k_u-JbImNzMOLoDT553U=s0' }} />
+                <ViroImage borderRadius={30} style={{ flex: 1 }} source={require('./assets/images/oscuro.png')} />
             </ViroFlexView>
             <ViroFlexView backgroundColor={'#239bac'} style={{ flex: 0.3, flexDirection: 'column' }} >
                 <ViroText

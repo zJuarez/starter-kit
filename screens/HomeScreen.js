@@ -45,7 +45,7 @@ export default function HomeScreen({route}) {
           }}>
             Learn more about
           </Text>
-          <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
+          <TouchableOpacity onPress={() => navigation.navigate('Profile', {user : user})}>
             <Text style={{
               color: themeColors.accent,
               fontWeight: "600",

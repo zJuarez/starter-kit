@@ -1,14 +1,14 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import firestore from '@react-native-firebase/firestore';
 // import firebaseConfig from './firebaseconfig';
 // import {collection, addDoc, getDocs, where, query} from 'firebase/firestore'; // import collection and addDoc functions from Firestore
-import {StyleSheet, Linking} from 'react-native';
+import { StyleSheet, Linking } from 'react-native';
 // TODO instead use get instead of local import. use only for testing
 import people from './people';
 import DemoCard from './DemoCard';
 import useAuth from './hooks/useAuth';
-import {auth} from './firebaseconfig';
-import {onAuthStateChanged} from 'firebase/auth';
+import { auth } from './firebaseconfig';
+import { onAuthStateChanged } from 'firebase/auth';
 
 import {
   ViroARScene,
@@ -29,6 +29,7 @@ import {
   ViroNode,
   Viro3DObject,
   ViroQuad,
+  ViroButton
 } from '@viro-community/react-viro';
 
 class BusinessCard extends Component {
@@ -41,10 +42,12 @@ class BusinessCard extends Component {
     realTargets: {},
     ready: false,
     activeKey: null,
+    uid: null,
   };
   componentDidMount() {
     onAuthStateChanged(auth, user => {
       this.get(user.uid);
+      this.setState({ uid: user.uid })
     });
 
     console.log('Get');
@@ -67,7 +70,7 @@ class BusinessCard extends Component {
         str = str.padStart(3, '0');
         return str;
       };
-      this.setState({entryTargets}, () => {
+      this.setState({ entryTargets }, () => {
         for (const [key, value] of Object.entries(this.state.entryTargets)) {
           entriesLocal[key] = {
             source: {
@@ -77,7 +80,7 @@ class BusinessCard extends Component {
             },
             orientation: 'Up',
             physicalWidth: 0.1, // width in meters,
-            data: {text: value.text, pokemon: value.pokemon},
+            data: { text: value.text, pokemon: value.pokemon },
             type: 'Image',
           };
         }
@@ -98,7 +101,7 @@ class BusinessCard extends Component {
   };
 
   getNoTrackingUI() {
-    const {isTracking, initialized} = this.state;
+    const { isTracking, initialized } = this.state;
     return (
       <ViroText text={initialized ? 'Initializing AR...' : 'No Tracking'} />
     );
@@ -107,6 +110,14 @@ class BusinessCard extends Component {
   render() {
     return (
       <ViroARScene onTrackingUpdated={this._onInitialized}>
+        <ViroButton
+          source={require("./assets/images/refresh.png")}
+          position={[-0.75, -8, -5]}
+          height={1}
+          width={1}
+          rotation={[-90, 0, 0]}
+          onClick={() => this.get(this.state.uid)}
+        />
         {Object.keys(this.state.realTargets).map((key, index) => {
           return (
             <ViroARImageMarker
