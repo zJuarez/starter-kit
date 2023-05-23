@@ -7,6 +7,7 @@ import WelcomeScreen from '../screens/WelcomeScreen';
 import LoginScreen from '../screens/LoginScreen';
 import SignUpScreen from '../screens/SignUpScreen';
 import ArScene from '../screens/ARScene';
+import ProfileScreen from '../screens/ProfileScreen';
 import useAuth from '../hooks/useAuth';
 import {themeColors} from '../theme';
 
@@ -29,6 +30,11 @@ export default function AppNavigation() {
             name="ARScene"
             options={{headerShown: false}}
             component={ArScene}
+          />
+           <Stack.Screen
+            name="Profile"
+            options={{headerShown: false}}
+            component={ProfileScreen}
           />
         </Stack.Navigator>
       </NavigationContainer>
