@@ -11,8 +11,7 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		20CF1AFD29F8423C003738C6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 20CF1AFC29F8423C003738C6 /* GoogleService-Info.plist */; };
-		20CF1AFE29F8423C003738C6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 20CF1AFC29F8423C003738C6 /* GoogleService-Info.plist */; };
+		20E722992A1834ED0064200D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 20E722982A1834ED0064200D /* GoogleService-Info.plist */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		8BC46DDEF185BA99924868C4 /* Pods_myviroapp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCFCA483CDB0B0E36A4EAA51 /* Pods_myviroapp.framework */; };
 		AFBAEC9CA95B97F0716A85FE /* Pods_myviroapp_myviroappTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3257F491F8A441F91613B7C2 /* Pods_myviroapp_myviroappTests.framework */; };
@@ -38,7 +37,7 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = myviroapp/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = myviroapp/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = myviroapp/main.m; sourceTree = "<group>"; };
-		20CF1AFC29F8423C003738C6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		20E722982A1834ED0064200D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3257F491F8A441F91613B7C2 /* Pods_myviroapp_myviroappTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myviroapp_myviroappTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		48A0565DE3D44B56ECD1F848 /* Pods-myviroapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myviroapp.debug.xcconfig"; path = "Target Support Files/Pods-myviroapp/Pods-myviroapp.debug.xcconfig"; sourceTree = "<group>"; };
 		4DFD222EAE268ECC94A3CB53 /* Pods-myviroapp-myviroappTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myviroapp-myviroappTests.release.xcconfig"; path = "Target Support Files/Pods-myviroapp-myviroappTests/Pods-myviroapp-myviroappTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -130,12 +129,12 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				20CF1AFC29F8423C003738C6 /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* myviroapp */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* myviroappTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
+				20E722982A1834ED0064200D /* GoogleService-Info.plist */,
 				39151F339D5A4A305A34497A /* Pods */,
 			);
 			indentWidth = 2;
@@ -240,7 +239,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20CF1AFE29F8423C003738C6 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,7 +248,7 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				20CF1AFD29F8423C003738C6 /* GoogleService-Info.plist in Resources */,
+				20E722992A1834ED0064200D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,11 +1,14 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import firestore from '@react-native-firebase/firestore';
 // import firebaseConfig from './firebaseconfig';
 // import {collection, addDoc, getDocs, where, query} from 'firebase/firestore'; // import collection and addDoc functions from Firestore
-import { StyleSheet, Linking } from 'react-native';
+import {StyleSheet, Linking} from 'react-native';
 // TODO instead use get instead of local import. use only for testing
 import people from './people';
 import DemoCard from './DemoCard';
+import useAuth from './hooks/useAuth';
+import {auth} from './firebaseconfig';
+import {onAuthStateChanged} from 'firebase/auth';
 
 import {
   ViroARScene,
@@ -40,32 +43,41 @@ class BusinessCard extends Component {
     activeKey: null,
   };
   componentDidMount() {
-    this.get();
+    onAuthStateChanged(auth, user => {
+      this.get(user.uid);
+    });
+
     console.log('Get');
   }
 
-  get = async () => {
+  get = async uid => {
     entriesLocal = {};
     try {
-      const querySnapshot = await firestore().collection('entries').get();
+      console.log('got user form ar: ', uid);
+      const querySnapshot = await firestore()
+        .collection('entries')
+        .where('user_id', '==', uid)
+        .get();
       const entryTargets = {};
       querySnapshot.forEach(documentSnapshot => {
         entryTargets[documentSnapshot.id] = documentSnapshot.data();
       });
-      const parseInteger = (num) => {
+      const parseInteger = num => {
         let str = num.toString();
-        str = str.padStart(3, "0");
+        str = str.padStart(3, '0');
         return str;
       };
-      this.setState({ entryTargets }, () => {
+      this.setState({entryTargets}, () => {
         for (const [key, value] of Object.entries(this.state.entryTargets)) {
           entriesLocal[key] = {
             source: {
-              uri: `https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/${parseInteger(value.pokemon)}.png`,
+              uri: `https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/${parseInteger(
+                value.pokemon,
+              )}.png`,
             },
             orientation: 'Up',
             physicalWidth: 0.1, // width in meters,
-            data: { text: value.text, pokemon: value.pokemon },
+            data: {text: value.text, pokemon: value.pokemon},
             type: 'Image',
           };
         }
@@ -86,7 +98,7 @@ class BusinessCard extends Component {
   };
 
   getNoTrackingUI() {
-    const { isTracking, initialized } = this.state;
+    const {isTracking, initialized} = this.state;
     return (
       <ViroText text={initialized ? 'Initializing AR...' : 'No Tracking'} />
     );
@@ -100,22 +112,26 @@ class BusinessCard extends Component {
             <ViroARImageMarker
               target={key}
               key={index}
-              onAnchorUpdated={(e) => {
+              onAnchorUpdated={e => {
                 // change active key when a new target is found
-                if(this.state.activeKey !== key && e.trackingMethod === 'tracking'){
-                  console.log('Anchor found ' + this.state.realTargets[key].data.pokemon)
-                  // show info from key 
+                if (
+                  this.state.activeKey !== key &&
+                  e.trackingMethod === 'tracking'
+                ) {
+                  console.log(
+                    'Anchor found ' + this.state.realTargets[key].data.pokemon,
+                  );
+                  // show info from key
                   this.setState({
-                    activeKey: key
+                    activeKey: key,
                   });
                 }
-              }}
-            >
-              {this.state.activeKey === key &&
+              }}>
+              {this.state.activeKey === key && (
                 <ViroNode>
                   <DemoCard demoText={this.state.realTargets[key].data.text} />
                 </ViroNode>
-              }
+              )}
             </ViroARImageMarker>
           );
         })}
@@ -130,7 +146,6 @@ class BusinessCard extends Component {
       //
     }
   };
-
 }
 
 var styles = StyleSheet.create({
