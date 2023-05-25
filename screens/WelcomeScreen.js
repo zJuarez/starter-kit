@@ -16,11 +16,11 @@ import {
 } from '@react-native-google-signin/google-signin';
 import {GoogleAuthProvider, signInWithCredential} from 'firebase/auth';
 
-GoogleSignin.configure({
-  webClientId:
-    '804315558824-82fsnnqs3gevbdq8naitec859qdeqjs5.apps.googleusercontent.com',
-  offlineAccess: true,
-});
+//GoogleSignin.configure({
+//  webClientId:
+//    '804315558824-82fsnnqs3gevbdq8naitec859qdeqjs5.apps.googleusercontent.com',
+//  offlineAccess: true,
+//});
 
 export default function WelcomeScreen() {
   const navigation = useNavigation();
@@ -44,6 +44,8 @@ export default function WelcomeScreen() {
       }
     }
   };
+  const isGoogleWorking = false
+
   return (
     <SafeAreaView style={[styles.container, {backgroundColor: themeColors.bg}]}>
       <View style={[styles.containerX]}>
@@ -60,7 +62,7 @@ export default function WelcomeScreen() {
             style={styles.button}>
             <Text style={[styles.buttonText]}>Sign Up</Text>
           </TouchableOpacity>
-          <TouchableOpacity
+          {isGoogleWorking && <TouchableOpacity
             onPress={() => signInGoogle()}
             style={[styles.button, {backgroundColor: themeColors.crema}]}>
             <View
@@ -80,7 +82,7 @@ export default function WelcomeScreen() {
               />
               <Text style={[styles.buttonText]}>Sign In with Google</Text>
             </View>
-          </TouchableOpacity>
+          </TouchableOpacity>}
           <View style={styles.link}>
             <Text style={[styles.textWhite, styles.fontSemibold]}>
               Already have an account?
