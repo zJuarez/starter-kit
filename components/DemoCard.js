@@ -18,7 +18,7 @@ export default function DemoCard(props) {
                 </ViroFlexView>
             </ViroFlexView>
             <ViroFlexView backgroundColor={'white'} style={{ flex: 0.6 }} >
-                <ViroImage borderRadius={30} style={{ flex: 1 }} source={require('./assets/images/oscuro.png')} />
+                <ViroImage borderRadius={30} style={{ flex: 1 }} source={require('../assets/images/oscuro.png')} />
             </ViroFlexView>
             <ViroFlexView backgroundColor={'#239bac'} style={{ flex: 0.3, flexDirection: 'column' }} >
                 <ViroText

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import firestore from '@react-native-firebase/firestore';
 import { StyleSheet } from 'react-native';
 import DemoCard from './DemoCard';
-import useAuth from './hooks/useAuth';
-import { auth } from './firebaseconfig';
+import useAuth from '../hooks/useAuth';
+import { auth } from '../firebaseconfig';
 import { onAuthStateChanged } from 'firebase/auth';
 
 import {
@@ -107,7 +107,7 @@ class BusinessCard extends Component {
     return (
       <ViroARScene onTrackingUpdated={this._onInitialized}>
         <ViroButton
-          source={require("./assets/images/refresh.png")}
+          source={require("../assets/images/refresh.png")}
           position={[-0.75, -8, -5]}
           height={1}
           width={1}
