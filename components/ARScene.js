@@ -1,23 +1,18 @@
 import React, { Component } from 'react';
 import firestore from '@react-native-firebase/firestore';
-import { StyleSheet } from 'react-native';
 import DemoCard from './DemoCard';
 import { auth } from '../firebaseconfig';
 import { onAuthStateChanged } from 'firebase/auth';
 
 import {
   ViroARScene,
-  ViroTrackingStateConstants,
   ViroARTrackingTargets,
-  ViroMaterials,
-  ViroText,
   ViroARImageMarker,
-  ViroAnimations,
   ViroNode,
   ViroButton
 } from '@viro-community/react-viro';
 
-class BusinessCard extends Component {
+class ARScene extends Component {
   state = {
     isTracking: false,
     initialized: false,
@@ -87,16 +82,9 @@ class BusinessCard extends Component {
     }
   };
 
-  getNoTrackingUI() {
-    const { isTracking, initialized } = this.state;
-    return (
-      <ViroText text={initialized ? 'Initializing AR...' : 'No Tracking'} />
-    );
-  }
-
   render() {
     return (
-      <ViroARScene onTrackingUpdated={this._onInitialized}>
+      <ViroARScene >
         <ViroButton
           source={require("../assets/images/refresh.png")}
           position={[-0.75, -8, -5]}
@@ -136,70 +124,5 @@ class BusinessCard extends Component {
       </ViroARScene>
     );
   }
-
-  _onInitialized = (state, reason) => {
-    if (state == ViroTrackingStateConstants.TRACKING_NORMAL) {
-      //
-    } else {
-      //
-    }
-  };
 }
-
-var styles = StyleSheet.create({
-  textStyle: {
-    flex: 0.5,
-    fontFamily: 'Roboto',
-    fontSize: 50,
-    color: '#ffffff',
-    textAlignVertical: 'top',
-    textAlign: 'left',
-    fontWeight: 'bold',
-  },
-  card: {
-    flexDirection: 'column',
-    backgroundColor: '#4476BA',
-  },
-  cardWrapper: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    padding: 0.001,
-    flex: 0.5,
-  },
-  subText: {
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start',
-    flex: 0.5,
-  },
-});
-
-ViroMaterials.createMaterials({
-  imagePlaceholder: {
-    diffuseColor: 'rgba(255,255,255,1)',
-  },
-  quad: {
-    diffuseColor: 'rgba(0,0,0,0.5)',
-  },
-});
-
-ViroAnimations.registerAnimations({
-  animateImage: {
-    properties: {
-      positionX: 0.05,
-      opacity: 1.0,
-    },
-    easing: 'Bounce',
-    duration: 500,
-  },
-  animateViro: {
-    properties: {
-      positionZ: 0.02,
-      opacity: 1.0,
-    },
-    easing: 'Bounce',
-    duration: 500,
-  },
-});
-
-export default BusinessCard;
+export default ARScene;

@@ -1,14 +1,14 @@
 import React from 'react';
 import {ViroARSceneNavigator} from '@viro-community/react-viro';
 
-import BusinessCard from '../components/BusinessCard'
+import ARScene from '../components/ARScene'
 
 export default () => {
   return (
     <ViroARSceneNavigator
       autofocus={true}
       initialScene={{
-        scene: BusinessCard, // business card scene trust
+        scene: ARScene, 
       }}
       style={{flex : 1}}
     />
