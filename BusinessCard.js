@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import firestore from '@react-native-firebase/firestore';
-// import firebaseConfig from './firebaseconfig';
-// import {collection, addDoc, getDocs, where, query} from 'firebase/firestore'; // import collection and addDoc functions from Firestore
-import { StyleSheet, Linking } from 'react-native';
-// TODO instead use get instead of local import. use only for testing
-import people from './people';
+import { StyleSheet } from 'react-native';
 import DemoCard from './DemoCard';
 import useAuth from './hooks/useAuth';
 import { auth } from './firebaseconfig';
