@@ -63,7 +63,7 @@ npm i --legacy-peer-deps
 5. Generar archivo de configuración (Firebase Console > Project Settings > Service Accounts > Generate new private key) y añadir en el root del projecto
 
 
-En `firebaseconfig.js` modificar el apartado de ```project_id ``` por ```projectId``` 
+En `firebaseconfig.js` modificar el apartado de ```project_id ``` por ```projectId```  y pegar contenido dentro de ``` const firebaseConfig = {} ```
 
 ```
  const firebaseConfig = {
