@@ -48,7 +48,9 @@ export default function ProfileScreen({ route }) {
 
     useEffect(async () => {
         // Run! Like go get some data from an API.
-        await get(user.uid)
+        if(user){
+            await get(user.uid)
+        }
     }, [user]);
 
     return (

@@ -31,8 +31,10 @@ class BusinessCard extends Component {
   };
   componentDidMount() {
     onAuthStateChanged(auth, user => {
-      this.get(user.uid);
-      this.setState({ uid: user.uid })
+      if(user){
+        this.get(user.uid);
+        this.setState({ uid: user.uid })
+      }
     });
 
     console.log('Get');

@@ -1,5 +1,4 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
 import {ViroARSceneNavigator} from '@viro-community/react-viro';
 
 import BusinessCard from '../components/BusinessCard'
@@ -11,18 +10,8 @@ export default () => {
       initialScene={{
         scene: BusinessCard, // business card scene trust
       }}
-      style={styles.f1}
+      style={{flex : 1}}
     />
   );
 };
 
-var styles = StyleSheet.create({
-  f1: {flex: 1},
-  helloWorldTextStyle: {
-    fontFamily: 'Arial',
-    fontSize: 30,
-    color: '#ffffff',
-    textAlignVertical: 'center',
-    textAlign: 'center',
-  },
-});

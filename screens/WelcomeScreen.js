@@ -16,16 +16,12 @@ import {
 } from '@react-native-google-signin/google-signin';
 import {GoogleAuthProvider, signInWithCredential} from 'firebase/auth';
 
-//GoogleSignin.configure({
-//  webClientId:
-//    '804315558824-82fsnnqs3gevbdq8naitec859qdeqjs5.apps.googleusercontent.com',
-//  offlineAccess: true,
-//});
-
 export default function WelcomeScreen() {
   const navigation = useNavigation();
   const signInGoogle = async () => {
     try {
+      // didnt work for us.
+      // if wanted need to GoogleSignin.configure with webClientId
       await GoogleSignin.hasPlayServices();
       const {idToken} = await GoogleSignin.signIn();
       const googleCredentials = GoogleAuthProvider.credential(idToken);
