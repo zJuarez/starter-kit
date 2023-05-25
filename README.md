@@ -2,10 +2,6 @@
 
 ### Cliente: Blue People
 
-Contacto Aldo Lares 
-
-alares@bluepeople.com
-
 ### Equipo de desarrollo: Tech People
 
 | Name                    | Email                                                               | Github                                                       | Role      |
