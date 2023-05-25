@@ -27,7 +27,7 @@ export default function HomeScreen({route}) {
       <View style={[styles.containerX]}>
           <Text style={styles.text}>{"Welcome, " + name}</Text>
           <View style={styles.imgContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate('ARScene')}
+          <TouchableOpacity onPress={() => navigation.navigate('ARScreen')}
             style={styles.camera}>
             <CameraIcon size="128" color={themeColors.accentSub} />
           </TouchableOpacity>

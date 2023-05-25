@@ -6,7 +6,7 @@ import HomeScreen from '../screens/HomeScreen';
 import WelcomeScreen from '../screens/WelcomeScreen';
 import LoginScreen from '../screens/LoginScreen';
 import SignUpScreen from '../screens/SignUpScreen';
-import ArScene from '../screens/ARScene';
+import ArScreen from '../screens/ARScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import useAuth from '../hooks/useAuth';
 import {themeColors} from '../theme';
@@ -27,9 +27,9 @@ export default function AppNavigation() {
             initialParams={{user: user}}
           />
           <Stack.Screen
-            name="ARScene"
+            name="ARScreen"
             options={{headerShown: false}}
-            component={ArScene}
+            component={ArScreen}
           />
            <Stack.Screen
             name="Profile"
