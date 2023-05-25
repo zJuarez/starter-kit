@@ -33,7 +33,7 @@ Aplicación móvil AR para visualizar información asociada a pokemones en forma
 1. Clonar este repo
 
 ```
- git clone https://github.com/zJurez/starter-kit.git
+ git clone https://github.com/zJuarez/starter-kit.git
 ```
 
 2. Matar los procesos en el puerto (opcional)
