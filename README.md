@@ -80,6 +80,9 @@ En `firebaseconfig.js` modificar el apartado de ```project_id ``` por ```project
     client_x509_cert_url: XXXXXX,
   };
 ```
+
+Agregar el apartado ```apiKey: <key>``` a firebaseConfig, obteniendo <key> de Firebase Console > Project Settings > General
+
 6. Instalar las dependencias de pod
 
 ```
