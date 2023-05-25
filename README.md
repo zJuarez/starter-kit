@@ -81,14 +81,19 @@ En `firebaseconfig.js` llenar el objeto `const firebaseConfig` de esta forma:
     client_x509_cert_url: XXXXXX,
   };
 ```
+6. Instalar las dependencias de pod
 
-6. Correr aplicacion (Android)
+```
+npx pod install
+```
+
+7. Correr aplicacion (Android)
 
 ```
 npx react-native run-android
 ```
 
-6. Correr aplicacion (IOS)
+7. Correr aplicacion (IOS)
 
 ```
 npx react-native run-ios
