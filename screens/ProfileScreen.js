@@ -8,9 +8,8 @@ import firestore from '@react-native-firebase/firestore';
 
 export default function ProfileScreen({ route }) {
     const navigation = useNavigation()
-    // TODO get name from user
     const { user } = route.params
-    const name = user.displayName ?? "Boss"
+    const name = user.displayName ?? user.email
     const [documents, setDocuments] = useState([])
     const parseInteger = num => {
         let str = num.toString();
@@ -31,8 +30,8 @@ export default function ProfileScreen({ route }) {
         console.log(myDocuments)
     }
 
-    const singleDocument = (document) => {
-        return <View style={styles.singleDocument}>
+    const singleDocument = (document, i) => {
+        return <View style={styles.singleDocument} key={i}>
             <View style={styles.rowCenter}> 
             <Image
                 source={{

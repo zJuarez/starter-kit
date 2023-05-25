@@ -9,11 +9,9 @@ import {auth} from '../firebaseconfig'
 
 export default function HomeScreen({route}) {
   const navigation = useNavigation()
-  // TODO get name from user
   const {user} = route.params
-  const name = user.displayName ?? "Boss"
+  const name = user.displayName ?? user.email
   const handleLogout = async() => {
-    // TODO do logout from google as well
     await signOut(auth)
   }
   return (
