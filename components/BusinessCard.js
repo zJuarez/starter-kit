@@ -2,29 +2,18 @@ import React, { Component } from 'react';
 import firestore from '@react-native-firebase/firestore';
 import { StyleSheet } from 'react-native';
 import DemoCard from './DemoCard';
-import useAuth from '../hooks/useAuth';
 import { auth } from '../firebaseconfig';
 import { onAuthStateChanged } from 'firebase/auth';
 
 import {
   ViroARScene,
-  ViroDirectionalLight,
-  ViroBox,
   ViroTrackingStateConstants,
   ViroARTrackingTargets,
   ViroMaterials,
   ViroText,
-  ViroImage,
-  ViroFlexView,
   ViroARImageMarker,
-  ViroARObjectMarker,
-  ViroAmbientLight,
-  ViroARPlane,
-  ViroAnimatedImage,
   ViroAnimations,
   ViroNode,
-  Viro3DObject,
-  ViroQuad,
   ViroButton
 } from '@viro-community/react-viro';
 
