@@ -60,9 +60,10 @@ npm i --legacy-peer-deps
 - Descargar `GoogleService-Info.plist` y meterlo en `/ios`
 
 
-5. Añadir credenciales de firebase en config file
+5. Generar archivo de configuración (Firebase Console > Project Settings > Service Accounts > Generate new private key) y añadir en el root del projecto
 
-En `firebaseconfig.js` llenar el objeto `const firebaseConfig` de esta forma:
+
+En `firebaseconfig.js` modificar el apartado de ```project_id ``` por ```projectId``` 
 
 ```
  const firebaseConfig = {
