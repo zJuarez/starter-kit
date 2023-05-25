@@ -26,8 +26,8 @@ Aplicación móvil AR para visualizar información asociada a pokemones en forma
 ## Instrucciones para correr:
 
 0. Requisitos previos
-- Tener el setup de react native y un dispositvo fisico al cual poder cargar codigo --> https://reactnative.dev/docs/environment-setup
-- Tener una cuenta en Firebase, crear un proyecto y dentro crear una instancia de base de datos en Firestore --> https://firebase.google.com/docs/firestore/quickstart
+- Tener el setup de react native y un dispositvo fisico al cual poder cargar codigo https://reactnative.dev/docs/environment-setup
+- Tener una cuenta en Firebase, crear un proyecto y dentro crear una instancia de base de datos en Firestore  https://firebase.google.com/docs/firestore/quickstart
 - Agregar Auth al proyecto creado https://firebase.google.com/docs/auth/web/password-auth
 
 1. Clonar este repo
