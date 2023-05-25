@@ -55,7 +55,7 @@ npm i --legacy-peer-deps
 
 - Descargar el `google-services.json` file y ponerlo en `/android/app/google-services.json`
 
-4. Firebase Setup (IOS)
+4. Firebase Setup (IOS) https://rnfirebase.io/#3-ios-setup
 
 - Descargar `GoogleService-Info.plist` y meterlo en `/ios`
 
