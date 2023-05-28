@@ -69,6 +69,7 @@ class ARScene extends Component {
 
         this.setState({
           realTargets: entriesLocal,
+          activeKey : null
         });
 
         console.log('Entries Local', entriesLocal);
