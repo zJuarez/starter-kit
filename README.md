@@ -2,10 +2,6 @@
 
 ### Cliente: Blue People
 
-Contacto Aldo Lares 
-
-alares@bluepeople.com
-
 ### Equipo de desarrollo: Tech People
 
 | Name                    | Email                                                               | Github                                                       | Role      |
@@ -29,13 +25,15 @@ Aplicación móvil AR para visualizar información asociada a pokemones en forma
 
 ## Instrucciones para correr:
 
-0. Tener el setup de react native y un dispositvo fisico al cual poder subirle codigo 
-- https://reactnative.dev/docs/environment-setup
+0. Requisitos previos
+- Tener el setup de react native y un dispositvo fisico al cual poder cargar codigo https://reactnative.dev/docs/environment-setup
+- Tener una cuenta en Firebase, crear un proyecto y dentro crear una instancia de base de datos en Firestore  https://firebase.google.com/docs/firestore/quickstart
+- Crear una instancia de Auth al proyecto creado https://firebase.google.com/docs/auth/web/password-auth
 
 1. Clonar este repo
 
 ```
- git clone https://github.com/zJurez/starter-kit.git
+ git clone https://github.com/zJuarez/starter-kit.git
 ```
 
 2. Matar los procesos en el puerto (opcional)
@@ -57,14 +55,15 @@ npm i --legacy-peer-deps
 
 - Descargar el `google-services.json` file y ponerlo en `/android/app/google-services.json`
 
-4. Firebase Setup (IOS)
+4. Firebase Setup (IOS) https://rnfirebase.io/#3-ios-setup
 
 - Descargar `GoogleService-Info.plist` y meterlo en `/ios`
 
 
-5. Añadir credenciales de firebase en config file
+5. Generar archivo de configuración (Firebase Console > Project Settings > Service Accounts > Generate new private key) y añadir en el root del projecto
 
-En `firebaseconfig.js` llenar el objeto `const firebaseConfig` de esta forma:
+
+En `firebaseconfig.js` modificar el apartado de ```project_id ``` por ```projectId```  y pegar contenido dentro de ``` const firebaseConfig = {} ```
 
 ```
  const firebaseConfig = {
@@ -82,13 +81,21 @@ En `firebaseconfig.js` llenar el objeto `const firebaseConfig` de esta forma:
   };
 ```
 
-6. Correr aplicacion (Android)
+Agregar el apartado ```apiKey: <key>``` a firebaseConfig, obteniendo <key> de Firebase Console > Project Settings > General
+
+6. Instalar las dependencias de pod
+
+```
+npx pod install
+```
+
+7. Correr aplicacion (Android)
 
 ```
 npx react-native run-android
 ```
 
-6. Correr aplicacion (IOS)
+7. Correr aplicacion (IOS)
 
 ```
 npx react-native run-ios
