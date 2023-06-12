@@ -11,11 +11,13 @@ export default function ProfileScreen({ route }) {
     const { user } = route.params
     const name = user.displayName ?? user.email
     const [documents, setDocuments] = useState([])
+    //  helper function to get link
     const parseInteger = num => {
         let str = num.toString();
         str = str.padStart(3, '0');
         return str;
     };
+    // get all pokemons for specific user id
     const get = async (uid) => {
         console.log('etting info for: ', uid);
         const querySnapshot = await firestore()
@@ -29,7 +31,7 @@ export default function ProfileScreen({ route }) {
         setDocuments(myDocuments)
         console.log(myDocuments)
     }
-
+    // component to render pokemon + text given document from firebase
     const singleDocument = (document, i) => {
         return <View style={styles.singleDocument} key={i}>
             <View style={styles.rowCenter}> 
@@ -56,6 +58,7 @@ export default function ProfileScreen({ route }) {
     return (
         <SafeAreaView style={[styles.container, { backgroundColor: themeColors.bg }]}>
             <SafeAreaView style={styles.flex}>
+                {/*  go back navigattion */}
                 <View style={styles.rowStart}>
                     <TouchableOpacity
                         onPress={() => navigation.goBack()}
@@ -65,7 +68,9 @@ export default function ProfileScreen({ route }) {
                 </View>
             </SafeAreaView>
             <View style={[styles.containerX]}>
+                {/*  title */}
                 <Text style={styles.text}>{name + "'s Documents"}</Text>
+                {/*  render all documents */}
                 <ScrollView>
                     {documents.map(singleDocument)}
                 </ScrollView>

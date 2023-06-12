@@ -34,7 +34,9 @@ class ARScene extends Component {
 
     console.log('Get');
   }
-
+  // gets all the oduments from firebase given specific user id
+  // updates state with documents
+  // updates ar targets with images
   get = async uid => {
     entriesLocal = {};
     try {
@@ -86,6 +88,7 @@ class ARScene extends Component {
   render() {
     return (
       <ViroARScene >
+        {/* refresh buton calls get function */}
         <ViroButton
           source={require("../assets/images/refresh.png")}
           position={[-0.75, -8, -5]}
@@ -94,6 +97,7 @@ class ARScene extends Component {
           rotation={[-90, 0, 0]}
           onClick={() => this.get(this.state.uid)}
         />
+        {/* for each target put a marker in the scene */}
         {Object.keys(this.state.realTargets).map((key, index) => {
           return (
             <ViroARImageMarker
@@ -114,6 +118,7 @@ class ARScene extends Component {
                   });
                 }
               }}>
+              {/* only if active show the demo card */}
               {this.state.activeKey === key && (
                 <ViroNode>
                   <DemoCard demoText={this.state.realTargets[key].data.text} />

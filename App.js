@@ -3,6 +3,7 @@ import AppNavigation from './navigation/appNavigation';
 
 export default function App() {
   return (
+    // Router
       <AppNavigation />
   );
 }

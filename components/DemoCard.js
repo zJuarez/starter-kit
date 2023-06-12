@@ -5,6 +5,7 @@ import {
     ViroFlexView,
 } from '@viro-community/react-viro';
 
+// card with title, image and text in 2d modeled in 3d.
 export default function DemoCard(props) {
     const demoText = props.demoText
     return (

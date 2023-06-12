@@ -12,6 +12,7 @@ export default function SignUpScreen() {
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    // try to sign up
     const onPrimaryButtonPress = async () => {
        if(email && password && name){
         try{
@@ -33,6 +34,7 @@ export default function SignUpScreen() {
                     flexDirection: "row",
                     justifyContent: "flex-start",
                 }}>
+                    {/* go back button */}
                     <TouchableOpacity
                         onPress={() => navigation.goBack()}
                         style={{
@@ -50,6 +52,7 @@ export default function SignUpScreen() {
                     flexDirection: "row",
                     justifyContent: "center", paddingVertical: 12,
                 }}>
+                    {/* logo */}
                     <Image source={require('../assets/images/crema.png')}
                         style={{ width: 165, height: 130 }} />
                 </View>
@@ -65,6 +68,7 @@ export default function SignUpScreen() {
             }}
             >
                 <View>
+                    {/*  name */}
                     <Text style={{
                         marginLeft: 16,
                         color: themeColors.darkGray,
@@ -81,6 +85,7 @@ export default function SignUpScreen() {
                         onChangeText={value => setName(value)}
                         placeholder='Enter Name'
                     />
+                    {/*  email */}
                     <Text style={{
                         marginLeft: 16,
                         color: themeColors.darkGray,
@@ -98,6 +103,7 @@ export default function SignUpScreen() {
                         onChangeText={value => setEmail(value)}
                         placeholder='Enter Email'
                     />
+                    {/*  password */}
                     <Text style={{
                         marginLeft: 16,
                         color: themeColors.darkGray,
@@ -116,6 +122,7 @@ export default function SignUpScreen() {
                         onChangeText={value => setPassword(value)}
                         placeholder='Enter Password'
                     />
+                    {/*  sign up button */}
                     <TouchableOpacity
                         style={{
                             paddingTop: 12,
@@ -135,6 +142,7 @@ export default function SignUpScreen() {
                         </Text>
                     </TouchableOpacity>
                 </View>
+                {/*  navigate to log in instead */}
                 <View style={{
                     marginTop: 28,
                     flexDirection: "row",

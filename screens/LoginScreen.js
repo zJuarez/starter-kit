@@ -19,7 +19,9 @@ export default function LoginScreen() {
   const navigation = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  // front for other socials log in, for now turned off
   const socials = false;
+  // try to log in
   const onPrimaryButtonPress = async () => {
     if (email && password) {
       try {
@@ -37,6 +39,7 @@ export default function LoginScreen() {
   return (
     <View style={[styles.container, {backgroundColor: themeColors.bg}]}>
       <SafeAreaView style={styles.flex}>
+        {/* go back navigation */}
         <View style={styles.rowStart}>
           <TouchableOpacity
             onPress={() => navigation.goBack()}
@@ -44,6 +47,7 @@ export default function LoginScreen() {
             <ArrowLeftIcon size="20" color="black" />
           </TouchableOpacity>
         </View>
+        {/* logo */}
         <View style={styles.rowCenter}>
           <Image
             source={require('../assets/images/crema.png')}
@@ -56,6 +60,7 @@ export default function LoginScreen() {
           styles.view,
           {borderTopLeftRadius: 50, borderTopRightRadius: 50},
         ]}>
+          {/* email */}
         <View className="form space-y-2">
           <Text style={[styles.text, styles.mt8]}>Email Address</Text>
           <TextInput
@@ -70,6 +75,7 @@ export default function LoginScreen() {
             value={email}
             onChangeText={value => setEmail(value)}
           />
+          {/* password */}
           <Text style={[styles.text, styles.mt8]}>Password</Text>
           <TextInput
             style={{
@@ -84,6 +90,7 @@ export default function LoginScreen() {
             value={password}
             onChangeText={value => setPassword(value)}
           />
+          {/* forget password, does nothing now */}
           <TouchableOpacity
             style={{
               display: 'flex',
@@ -98,6 +105,7 @@ export default function LoginScreen() {
               Forgot Password?
             </Text>
           </TouchableOpacity>
+          {/* log in button */}
           <TouchableOpacity
             onPress={onPrimaryButtonPress}
             style={{
@@ -119,6 +127,7 @@ export default function LoginScreen() {
             </Text>
           </TouchableOpacity>
         </View>
+        {/* socials log in front */}
         {socials && (
           <>
             {' '}
@@ -194,6 +203,7 @@ export default function LoginScreen() {
             flexDirection: 'row',
             justifyContent: 'center',
           }}>
+            {/* navigate to sign up */}
           <Text
             style={{
               color: '#6B7280',

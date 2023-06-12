@@ -16,6 +16,7 @@ import {
 } from '@react-native-google-signin/google-signin';
 import {GoogleAuthProvider, signInWithCredential} from 'firebase/auth';
 
+// view for not logged in users
 export default function WelcomeScreen() {
   const navigation = useNavigation();
   const signInGoogle = async () => {
@@ -45,7 +46,9 @@ export default function WelcomeScreen() {
   return (
     <SafeAreaView style={[styles.container, {backgroundColor: themeColors.bg}]}>
       <View style={[styles.containerX]}>
+        {/*  brand */}
         <Text style={styles.text}>Tech People</Text>
+        {/*  logo */}
         <View style={styles.imgContainer}>
           <Image
             source={require('../assets/images/claroS.png')}
@@ -53,11 +56,13 @@ export default function WelcomeScreen() {
           />
         </View>
         <View>
+          {/*  navigate to sign up */}
           <TouchableOpacity
             onPress={() => navigation.navigate('SignUp')}
             style={styles.button}>
             <Text style={[styles.buttonText]}>Sign Up</Text>
           </TouchableOpacity>
+          {/*  google sing in button */}
           {isGoogleWorking && <TouchableOpacity
             onPress={() => signInGoogle()}
             style={[styles.button, {backgroundColor: themeColors.crema}]}>
@@ -79,6 +84,7 @@ export default function WelcomeScreen() {
               <Text style={[styles.buttonText]}>Sign In with Google</Text>
             </View>
           </TouchableOpacity>}
+          {/*  navigate to log in */}
           <View style={styles.link}>
             <Text style={[styles.textWhite, styles.fontSemibold]}>
               Already have an account?

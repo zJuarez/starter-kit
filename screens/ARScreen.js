@@ -3,6 +3,7 @@ import {ViroARSceneNavigator} from '@viro-community/react-viro';
 
 import ARScene from '../components/ARScene'
 
+// ar scene
 export default () => {
   return (
     <ViroARSceneNavigator

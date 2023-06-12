@@ -9,8 +9,10 @@ import {auth} from '../firebaseconfig'
 
 export default function HomeScreen({route}) {
   const navigation = useNavigation()
+  // user must exist and comes from route params
   const {user} = route.params
   const name = user.displayName ?? user.email
+  // try logout 
   const handleLogout = async() => {
     await signOut(auth)
   }
@@ -18,6 +20,7 @@ export default function HomeScreen({route}) {
     <SafeAreaView style={[styles.container, { backgroundColor: themeColors.bg }]}>
       <SafeAreaView style={styles.flex} >
         <View style={styles.rowEnd}>
+          {/* logout icon */}
           <TouchableOpacity onPress={handleLogout}
             style={styles.logout}>
             <ArrowRightOnRectangleIcon size="24" color={themeColors.crema} />
@@ -25,8 +28,10 @@ export default function HomeScreen({route}) {
         </View>
       </SafeAreaView>
       <View style={[styles.containerX]}>
+        {/* title */}
           <Text style={styles.text}>{"Welcome, " + name}</Text>
           <View style={styles.imgContainer}>
+            {/* main action camera button */}
           <TouchableOpacity onPress={() => navigation.navigate('ARScreen')}
             style={styles.camera}>
             <CameraIcon size="128" color={themeColors.accentSub} />
@@ -43,6 +48,7 @@ export default function HomeScreen({route}) {
           }}>
             Learn more about
           </Text>
+          {/* profile navigation */}
           <TouchableOpacity onPress={() => navigation.navigate('Profile', {user : user})}>
             <Text style={{
               color: themeColors.accent,

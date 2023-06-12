@@ -14,7 +14,9 @@ import {themeColors} from '../theme';
 const Stack = createNativeStackNavigator();
 
 export default function AppNavigation() {
+  // useAuth hook needed to know if user is loggeed in
   const {user} = useAuth();
+  // go directly to home screen if user exists
   if (user) {
     return (
       <NavigationContainer>
@@ -40,6 +42,7 @@ export default function AppNavigation() {
       </NavigationContainer>
     );
   }
+  // show welcome screen and invite user to log in
   return (
     <NavigationContainer>
       <StatusBar backgroundColor={themeColors.bg} />
